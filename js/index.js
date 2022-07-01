@@ -14,6 +14,7 @@ let it = obj.generator();
 // - - - - - - - - - - - Создаем переменные - - - - - - - - - - - 
 var div_task = "";
 var div_input = "";
+var full = false;
 
 
 // - - - - - Получение данных из поля [.container input] - - - - - 
@@ -35,7 +36,9 @@ $("#add").on("click", function() {
     $(".container span").css('color', 'grey');  
     let i = it.next().value;
     // Создание элемента html 
-    div_task += `<p class='point'>Задание #${i}:&nbsp;&nbsp;&nbsp;${div_input}</p>`;
+    div_task = `<p class='point'>Задание #${i}:&nbsp;&nbsp;&nbsp;${div_input}</p>`;
+    $(".container .task").append(div_task);
+    full = true;
     // Очистка поля input и передача ему фокуса ввода
     div_input = $(".container input").val('');
     $(".container input").focus()
@@ -48,20 +51,24 @@ $("#add").on("click", function() {
 });
 
 
-// - - - - - - - - - Нажатие клавиши [Показать] - - - - - - - - -
-$("#show").on("click", function() {
-    $(".container .task").css('display', 'flex');
-    $(".container .task").append(div_task);
-    if (div_task != "")
+// - - - - - - - - - Нажатие клавиши [Показать_Скрыть] - - - - - - - - -
+$("#show_hide").on("click", function() {
+    if (($("#show_hide").attr("name") == "show") && full)
+        {
+        $(".container .task").css('display', 'flex');
         $(".container hr").css('display', 'block');
+        $("#show_hide").attr("name","hide");
+        $("#check").toggleClass("far fa-eye", "far fa-eye-slash");
+        $("#check").attr("class", "far fa-eye-slash");
+        }
+    else
+        {
+        $(".container .task").css('display', 'none');
+        $(".container hr").css('display', 'none');   
+        $("#show_hide").attr("name","show")
+        $("#check").attr("class", "far fa-eye");
+        }    
     div_task = "";
-});
-
-
-// - - - - - - - - - Нажатие клавиши [Скрыть] - - - - - - - - -
-$("#hide").on("click", function() {
-    $(".container .task").css('display', 'none');
-    $(".container hr").css('display', 'none');
 });
 
 

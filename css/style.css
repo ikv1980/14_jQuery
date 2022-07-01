@@ -58,7 +58,7 @@ h3 {
     align-items: center;
 }
 
-.container button {
+.container #add, #show_hide {
     padding: 15px 25px;
     margin: 5px 0px;
     border-radius: 5px;
@@ -69,6 +69,12 @@ h3 {
     color: #ffffff;
     font-weight: 500;
     transition: background 300ms linear;
+}
+
+.container #show_hide {
+    width: 100px;
+    padding: 9px 25px;
+    font-size: 29px;
 }
 
 .container button:hover {
@@ -111,28 +117,16 @@ hr {
 }
 
 
-@media(max-width: 500px) {
+@media(max-width: 360px) {
     .container .button {
         margin: 0px auto;
         display: flex;
         flex-wrap: wrap;
     }
-    .container .button div {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
     .container #add {
         width: 100%;
     }
-}
-
-
-@media(max-width: 320px) {
-    .container #show,
-    .container #hide {
+    .container #show_hide {
         width: 100%;
     }
 }
